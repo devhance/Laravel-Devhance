@@ -11,15 +11,12 @@
                     <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @endif
             @else 
+                
+                <li><a href="/">Dashboard</a></li>
                 @can('admin')
-                <li><a href="/admin/users">User Management</a></li>
-                <li><a href="/admin/books">Book Mangement</a></li>
-                <li><a href="/admin/rented">Rented</a></li>
+                <li><a href="{{ route('admin.users.index') }}'">Manage Users</a></li>
                 @endcan
-                @can('user')
-                <li><a href="/user/rented">Dashboard</a></li>
-                <li><a href="/user/books">Rent Books</a></li>
-                @endcan
+                <li><a href="">My Questions</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -30,6 +27,7 @@
                         @csrf
                     </form>
                 </li>
+              
             @endguest
         </ul>
     </div>

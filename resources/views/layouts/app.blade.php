@@ -26,6 +26,7 @@
         @include('inc.navbar')
         <br /><br />
         <div class="ui very padded container">
+            
             <main class="py-4">
                 @yield('content')
             </main>

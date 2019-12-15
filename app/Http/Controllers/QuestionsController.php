@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Question;
 
 class QuestionsController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +16,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        //
+        return 'idex';
     }
 
     /**
@@ -32,9 +35,20 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Question $question)
     {
-        //
+        $user = auth()->user()->user_id;
+        
+        $data = request()->validate([
+            'question' => 'required',
+        ]);
+
+        Question::create([
+            'question' => request('question'),
+            'user_id' => $user
+        ]);
+        return redirect('/dashboard');
+     
     }
 
     /**
@@ -45,7 +59,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
