@@ -16,7 +16,7 @@
                 @can('admin')
                 <li><a href="{{ route('admin.users.index') }}'">Manage Users</a></li>
                 @endcan
-                <li><a href="">My Questions</a></li>
+                <li><a href="/my-questions">My Questions</a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

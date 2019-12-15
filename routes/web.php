@@ -25,6 +25,8 @@ Route::prefix('questions')->name('questions.')->group(function() {
     Route::resource('/answer/comments', 'CommentsController');
 });
 
+Route::resource('/my-questions', 'MyQuestionsController');
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
