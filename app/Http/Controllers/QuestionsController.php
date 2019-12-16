@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\User;
 use App\Question;
+use App\Answer;
 
 class QuestionsController extends Controller
 {
@@ -14,9 +16,15 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('questions.result');
+        $key = request('search');
+        $results = Question::where('question', 'like', "%$key%")->paginate(10);
+        // $results = Question::search($key)->paginate(10);
+
+        // dd($key);
+        // dd($results);
+        return view('questions.result', compact('results'));
     }
 
     /**
@@ -57,32 +65,16 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        return view('questions.show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        
+        $author = User::where('user_id', $question->user_id)->first();
+        $answers = Answer::where('question_id', $question->id)
+                        ->join('users', 'answers.user_id','users.user_id')
+                        ->select('answers.*', 'users.firstname', 'users.lastname')
+                        ->get();
+        
+        return view('questions.show', compact('question', 'author', 'answers'));
     }
 
     /**

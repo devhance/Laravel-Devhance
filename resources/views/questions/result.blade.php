@@ -5,15 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h3 class="uk-heading-bullet">Search Results</h3>
-            <div style="padding-top: 30px;"></div>
+            <p class="uk-text-meta uk-text-large">{{ $results->count() }} results found.</p>
+            <div style="padding-top: 20px;"></div>
             <dl class="uk-description-list uk-description-list-divider">
-                <dt><a href="{{ route('questions.question.show') }}" class="uk-text-bold" style="font-size: 19px;">493 | Page Expired on Laravel</a> </dt>
-                <dd><i style="color: #545454;" class="uk-text-small">Posted by Bill Justin | November 20, 2019</i></dd>
-                <dt><a href="" class="uk-text-bold">Description term</a></dt>
-                <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd>
-                <dt><a href="" class="uk-text-bold">Description term</a></dt>
-                <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</dd>
+                @forelse ($results as $result)
+                    <dt><a href="{{ route('questions.question.show', $result->id) }}" class="uk-text-bold" style="font-size: 19px;">{{ $result->question }}</a> </dt>
+                    <dd class="uk-text-meta">by {{ $result->user_id }} | {{ $result->created_at }}</dd>
+                @empty 
+                    <div class="ui negative message">
+                        Nothing matched your search.
+                    </div>
+                @endforelse
             </dl>
+            {{ $results->links('pagination.uikit') }}
         </div>
     </div>
 </div>

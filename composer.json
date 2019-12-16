@@ -19,6 +19,7 @@
         "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.1",
         "mockery/mockery": "^1.0",
+        "nicolaslopezj/searchable": "^1.12",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
     },

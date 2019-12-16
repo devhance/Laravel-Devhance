@@ -3,10 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Answer;
+use App\Report;
 
-class AnswersController extends Controller
+class ReportsController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -17,16 +36,12 @@ class AnswersController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'question_id' => 'required',
-            'answer' => 'required'
+            'post_id' => 'required',
+            'post_type' => 'required',
+            'user_id' => 'required',
         ]);
 
-        Answer::create([
-            'question_id' => request('question_id'),
-            'answer' => request('answer'),
-            'user_id' => auth()->user()->user_id
-        ]);
-
+        Report::updateOrCreate($data);
         return redirect()->back();
     }
 
@@ -59,9 +74,9 @@ class AnswersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Answer $answer)
+    public function update(Request $request, $id)
     {
-        dd($answer);
+        //
     }
 
     /**

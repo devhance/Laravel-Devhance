@@ -22,7 +22,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
 Route::prefix('questions')->name('questions.')->group(function() {
     Route::resource('/question', 'QuestionsController');
     Route::resource('/answer', 'AnswersController');
-    Route::resource('/answer/comments', 'CommentsController');
+    Route::resource('/report', 'ReportsController');
 });
 
 Route::resource('/my-questions', 'MyQuestionsController');
@@ -30,3 +30,6 @@ Route::resource('/my-questions', 'MyQuestionsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+Route::get('/search', 'QuestionsController@index');
