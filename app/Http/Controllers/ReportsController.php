@@ -14,7 +14,8 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::where('status', 1)->paginate(25);
+        return view('admin.reports', compact('reports'));
     }
 
     /**

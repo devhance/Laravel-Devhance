@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 
 class MyQuestionsController extends Controller
 {
@@ -13,7 +14,8 @@ class MyQuestionsController extends Controller
      */
     public function index()
     {
-        return view('questions.my-questions');
+        $results = Question::where('user_id', auth()->user()->user_id)->paginate(10);
+        return view('questions.result', compact('results')); 
     }
 
     /**

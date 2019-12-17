@@ -16,18 +16,25 @@ class AnswersController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'question_id' => 'required',
-            'answer' => 'required'
-        ]);
-
-        Answer::create([
-            'question_id' => request('question_id'),
-            'answer' => request('answer'),
-            'user_id' => auth()->user()->user_id
-        ]);
-
-        return redirect()->back();
+        $check = Answer::where('question_id', $request->question_id)->where('user_id', auth()->user()->user_id)->first();
+        if ($check !== NULL) {
+            return redirect()->back()->with('error', 'You can only answer this question once. You may edit your answer instead.');
+        }
+        else {
+            $data = request()->validate([
+                'question_id' => 'required',
+                'answer' => 'required'
+            ]);
+    
+            Answer::create([
+                'question_id' => request('question_id'),
+                'answer' => request('answer'),
+                'user_id' => auth()->user()->user_id
+            ]);
+    
+            return redirect()->back();
+        }
+        
     }
 
     /**

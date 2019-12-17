@@ -13,6 +13,7 @@
             @else 
                 
                 <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="questions/browse">Browse</a></li>
                 @can('admin')
                 <li><a href="{{ route('admin.users.index') }}'">Manage Users</a></li>
                 @endcan

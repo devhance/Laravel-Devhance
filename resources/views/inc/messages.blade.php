@@ -4,17 +4,16 @@
     @endforeach
 @endif
 
-@if(session('sucess'))
+@if(session('success'))
     <div class="ui success message">
         {{ session('success') }}
     </div>
 @endif
 
 @if(session('error'))
-    <div class="ui danger message">
+    <div class="ui negative message">
         {{ session('error') }}
     </div>
 @endif
 
 
-adawdadw

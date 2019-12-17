@@ -17,16 +17,18 @@ Route::get('/', function () {
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('/users', 'UsersController');
+    
 });
 
 Route::prefix('questions')->name('questions.')->group(function() {
     Route::resource('/question', 'QuestionsController');
     Route::resource('/answer', 'AnswersController');
     Route::resource('/report', 'ReportsController');
+    Route::resource('/browse', 'BrowseQuestionsController');
 });
 
 Route::resource('/my-questions', 'MyQuestionsController');
-
+Route::resource('/admin/reports', 'ReportsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

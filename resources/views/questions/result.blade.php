@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3 class="uk-heading-bullet">Search Results</h3>
-            <p class="uk-text-meta uk-text-large">{{ $results->count() }} results found.</p>
+            <h3 class="uk-heading-bullet">Search Results  | <span class="uk-text-meta uk-text-large">{{ $results->count() }} question(s) found.</span></h3>
+            
             <div style="padding-top: 20px;"></div>
             <dl class="uk-description-list uk-description-list-divider">
                 @forelse ($results as $result)
