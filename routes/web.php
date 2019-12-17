@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:admin')->group(function() {
     Route::resource('/users', 'UsersController');
     
 });
@@ -28,7 +28,7 @@ Route::prefix('questions')->name('questions.')->group(function() {
 });
 
 Route::resource('/my-questions', 'MyQuestionsController');
-Route::resource('/admin/reports', 'ReportsController');
+Route::resource('/admin/reports', 'ReportsController')->middleware('can:admin');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

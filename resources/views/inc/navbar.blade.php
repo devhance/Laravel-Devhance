@@ -14,10 +14,12 @@
                 
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="questions/browse">Browse</a></li>
-                @can('admin')
-                <li><a href="{{ route('admin.users.index') }}'">Manage Users</a></li>
-                @endcan
+                
                 <li><a href="/my-questions">My Questions</a></li>
+                @can('admin')
+                <li><a href="{{ route('admin.users.index') }}">Manage Users</a></li>
+                <li><a href="{{ route('admin.users.index') }}">Reports</a></li>
+                @endcan
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

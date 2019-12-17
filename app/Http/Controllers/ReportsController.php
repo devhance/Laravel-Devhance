@@ -7,6 +7,10 @@ use App\Report;
 
 class ReportsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,9 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        $reports = Report::where('status', 1)->paginate(25);
+        $reports = Report::where('status', 1)
+                ->select('users.firstname', 'users.lastname', 'question')
+                ->paginate(25);
         return view('admin.reports', compact('reports'));
     }
 
